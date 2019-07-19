@@ -403,7 +403,7 @@ export default function ResponsiveDialog(props) {
   // console.log(props.values)
 
 
-  if(props.values.gender==='female'){
+  if(props.values.gender==='female' && props.values.bestfit==='' && props.values.size===''){
     return(
       <div>
       <Button variant='contained' className={classes.button} fullWidth={true} onClick={handleClickOpen}>
@@ -519,7 +519,7 @@ export default function ResponsiveDialog(props) {
     </div>
     )
   }
-  else{
+  else if(props.values.gender==='male' && props.values.bestfit==='' && props.values.size===''){
     return (
       <div>
         <Button variant='contained' className={classes.button} fullWidth={true} onClick={handleClickOpen}>
@@ -634,4 +634,219 @@ export default function ResponsiveDialog(props) {
       </div>
     );
   }
+  else if(props.values.gender==='female' && props.values.bestfit.length>=0 && props.values.size.length>=0){
+    return(
+      <div>
+      <Button variant='contained' className={classes.button} fullWidth={true} onClick={handleClickOpen}>
+        Find My Size
+      </Button>
+      <Dialog
+        fullScreen={fullScreen}
+        open={props.open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+        scroll={'paper'}
+      >
+        <DialogTitle id="responsive-dialog-title">{"Female Brand Sizes"}</DialogTitle>
+        <DialogContent>
+        {
+          (femaleSizes).map((type,key)=>{
+              if(props.values.bestfit.toUpperCase()===type.brandname.toUpperCase() && props.values.size.toUpperCase()===type.name.toUpperCase()){
+                console.log(type)
+                if(type.brandname.toUpperCase()==='STYLE PLUS'){
+                  return (
+                    <Grid container spacing={0} key={key}>
+                      <Grid item xs={12}>
+                        <h5>Sizes below are in inches</h5>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <h2>Brand Name:{type.brandname}</h2>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Size:{type.name}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Chest:{type.chest}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Waist:{type.waist}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Hip:{type.hip}</h3>
+                      </Grid>
+                    </Grid>
+                    )
+                }
+                else if(type.brandname.toUpperCase()==='MARCHING SHOW CONCEPTS'){
+                  return (
+                    <Grid container spacing={0} key={key}>
+                      <Grid item xs={12}>
+                        <h5>Sizes below are in inches</h5>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <h2>Brand Name:{type.brandname}</h2>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Size:{type.name}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Girth:{type.girth}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Chest:{type.bust}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Waist:{type.waistb}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Hip:{type.hip}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Inseam:{type.inseam}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Overseam:{type.overseam}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Hip:{type.hip}</h3>
+                      </Grid>
+                    </Grid>
+                    )
+                }
+                else{
+                  return(
+                   null
+                  )
+                }
+
+              }  
+              else{
+                return(
+               null
+                )
+              }
+          })
+        }
+        
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          {/* <Button onClick={handleClose} color="primary" autoFocus>
+            Agree
+          </Button> */}
+        </DialogActions>
+      </Dialog>
+      </div>
+    )
+  }
+
+  else if(props.values.gender==='male' && props.values.bestfit.length>=0 && props.values.size.length>=0){
+    return(
+      <div>
+      <Button variant='contained' className={classes.button} fullWidth={true} onClick={handleClickOpen}>
+        Find My Size
+      </Button>
+      <Dialog
+        fullScreen={fullScreen}
+        open={props.open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+        scroll={'paper'}
+      >
+        <DialogTitle id="responsive-dialog-title">{"Male Brand Sizes"}</DialogTitle>
+        <DialogContent>
+        {
+          (maleSizes).map((type,key)=>{
+              if(props.values.bestfit.toUpperCase()===type.brandname.toUpperCase() && props.values.size.toUpperCase()===type.name.toUpperCase()){
+                console.log(type)
+                if(type.brandname.toUpperCase()==='STYLE PLUS'){
+                  return (
+                    <Grid container spacing={0} key={key}>
+                      <Grid item xs={12}>
+                        <h5>Sizes below are in inches</h5>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <h2>Brand Name:{type.brandname}</h2>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Size:{type.name}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Chest:{type.chest}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Waist:{type.waist}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Hip:{type.hip}</h3>
+                      </Grid>
+                    </Grid>
+                    )
+                }
+                else if(type.brandname.toUpperCase()==='MARCHING SHOW CONCEPTS'){
+                  return (
+                    <Grid container spacing={0} key={key}>
+                      <Grid item xs={12}>
+                        <h5>Sizes below are in inches</h5>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <h2>Brand Name:{type.brandname}</h2>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Size:{type.name}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Girth:{type.girth}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Chest:{type.bust}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Waist:{type.waistb}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Hip:{type.hip}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Inseam:{type.inseam}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Overseam:{type.overseam}</h3>
+                      </Grid>
+                      <Grid item xs={12} sm={3}>
+                        <h3>Hip:{type.hip}</h3>
+                      </Grid>
+                    </Grid>
+                    )
+                }
+                else{
+                  return(
+                   null
+                  )
+                }
+
+              }   
+              else{
+                return(
+                null
+                )
+              }
+          })
+        }
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          {/* <Button onClick={handleClose} color="primary" autoFocus>
+            Agree
+          </Button> */}
+        </DialogActions>
+      </Dialog>
+      </div>
+    )
+  }
+
 }

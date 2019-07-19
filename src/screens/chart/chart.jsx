@@ -18,6 +18,95 @@ const genders = [
       },
   ];
 
+  const brands = [
+    {
+      value: 'Marching Show Concepts',
+      label: 'Marching Show Concepts',
+    },
+    {
+        value: 'Style Plus',
+        label: 'Style Plus',
+      },
+  ];
+  
+  const sizeStyle = [
+      {
+          value:'2XS',
+          label:'2XS'
+      },
+      {
+        value:'XS',
+        label:'XS'
+    },
+    {
+        value:'SM',
+        label:'SM'
+    },
+    {
+        value:'MD',
+        label:'MD'
+    },
+    {
+        value:'LG',
+        label:'LG'
+    },
+    {
+        value:'XL',
+        label:'XL'
+    },
+    {
+        value:'2XL',
+        label:'2XL'
+    },
+    {
+        value:'3XL',
+        label:'3XL'
+    },
+    {
+        value:'4XL',
+        label:'4XL'
+    },
+    {
+        value:'5XL',
+        label:'5XL'
+    },
+  ]
+ 
+  const sizeMarch = [
+      {
+          value:'XSMALL',
+          label:'Xsmall'
+      },
+      {
+        value:'SMALL',
+        label:'Small'
+    },
+    {
+        value:'MEDIUM',
+        label:'Medium'
+    },
+    {
+        value:'LARGE',
+        label:'LARGE'
+    },
+    {
+        value:'XLARGE',
+        label:'XLARGE'
+    },
+    {
+        value:'2X',
+        label:'2X'
+    },
+    {
+        value:'3X',
+        label:'3X'
+    },
+    {
+        value:'4X',
+        label:'4X'
+    },
+  ]
+
   const useStyles = makeStyles(theme => ({
     container: {
       display: 'flex',
@@ -57,8 +146,8 @@ function Chart(){
         hip: '',
         inseam:'',
         overarm:'',
-        bestfit:'',
-        size:''
+        bestfit:'Marching Show Concepts',
+        size:'SMALL'
       });
 
 
@@ -75,12 +164,16 @@ function Chart(){
       }
 
       function handleOpen(){
-          if(values.bust==='' && values.waist===''){
-                   alert('Complete All Fields') 
+          console.log(values.bestfit.length)
+          if(values.bust.length>0 && values.waist.length>=0 ){
+                   setOpen(true)
           }
-          else{
-              setOpen(true);
+          else if(values.bust.length===0 && values.waist.length===0 && values.bestfit.length>0 && values.size.length>0){
+              setOpen(true)
           }
+         else{
+             alert('Complete the Fields')
+         }
       }
 
       function clear(){
@@ -92,8 +185,8 @@ function Chart(){
             hip: '',
             inseam:'',
             overarm:'',
-            bestfit:'',
-            size:''
+            bestfit:'Marching Show Concepts',
+            size:'SMALL'
           })
           setradioValue('in')
       }
@@ -243,17 +336,76 @@ function Chart(){
                             <Grid item xs={11} sm={6} md={4} container spacing={0}>
                                 <Grid item xs={12} sm={6} md={8}  >
                                 <TextField
-                                id="bestfit"
-                                label="Best Fitting Brand"
-                                className={classes.textField}
+                                id="outlined-select-brand-native"
+                                select
+                                fullWidth
+                                label="Brands."
                                 value={values.bestfit}
+                                className={classes.textField}
                                 onChange={handleChange('bestfit')}
+                                SelectProps={{
+                                native: true,
+                                }}
+                                helperText="Please select your preference"
                                 margin="normal"
                                 variant="outlined"
-                            />
+                            >
+                                {brands.map(option => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                                ))}
+                            </TextField>
                                 </Grid>
                                 <Grid item  xs={12} sm={6} md={4} >
-                                <TextField
+                                {
+                                    (values.bestfit.toUpperCase()==='MARCHING SHOW CONCEPTS') ? (
+                                        <TextField
+                                        id="outlined-select-size-native"
+                                        select
+                                        fullWidth
+                                        label="Size."
+                                        value={values.size}
+                                        className={classes.textField}
+                                        onChange={handleChange('size')}
+                                        SelectProps={{
+                                        native: true,
+                                        }}
+                                        helperText="Please select your preference"
+                                        margin="normal"
+                                        variant="outlined"
+                                    >
+                                        {sizeMarch.map(option => (
+                                        <option key={option.value} value={option.value}>
+                                            {option.label}
+                                        </option>
+                                        ))}
+                                    </TextField>
+                                    ) : (
+                                        <TextField
+                                        id="outlined-select-size-native"
+                                        select
+                                        fullWidth
+                                        label="Size"
+                                        value={values.size}
+                                        className={classes.textField}
+                                        onChange={handleChange('size')}
+                                        SelectProps={{
+                                        native: true,
+                                        }}
+                                        helperText="Please select your preference"
+                                        margin="normal"
+                                        variant="outlined"
+                                    >
+                                        {sizeStyle.map(option => (
+                                        <option key={option.value} value={option.value}>
+                                            {option.label}
+                                        </option>
+                                        ))}
+                                    </TextField>
+                                    )
+                                }
+                                {/* <TextField
                                 id="size"
                                 label="Size"
                                 className={classes.textField}
@@ -261,7 +413,7 @@ function Chart(){
                                 onChange={handleChange('size')}
                                 margin="normal"
                                 variant="outlined"
-                            />
+                                /> */}
                                 </Grid>
                             </Grid>
                             
