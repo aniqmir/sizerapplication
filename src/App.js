@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 function App() {
 
-  const [group,setGroup] = React.useState(3);
+  const [group,setGroup] = React.useState(1);
 
   let tempArray = []
   let i = 1;

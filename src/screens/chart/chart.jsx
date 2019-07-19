@@ -47,6 +47,8 @@ function Chart(){
 
     const classes = useStyles();
 
+    const [open, setOpen] = React.useState(false);
+
     const [values, setValues] = useState({
         gender:'female',
         girth: '',
@@ -72,6 +74,15 @@ function Chart(){
         setradioValue(event.target.value);
       }
 
+      function handleOpen(){
+          if(values.bust==='' && values.waist===''){
+                   alert('Complete All Fields') 
+          }
+          else{
+              setOpen(true);
+          }
+      }
+
       function clear(){
           setValues({
             gender:'female',
@@ -86,7 +97,6 @@ function Chart(){
           })
           setradioValue('in')
       }
-    
     return(
         <Container>
             <Grid container spacing={3}   className={classes.gridContainer}>
@@ -265,7 +275,7 @@ function Chart(){
                                 <Button className={classes.button} onClick={()=>clear()}>> clear</Button>
                                 </Grid>
                                 <Grid item xs={7} sm={6} md={6}>
-                                    <FindSize values={values}/>
+                                    <FindSize values={values} clear={()=>clear()} open={open} handleOpen={(e)=>handleOpen(e)} setClose={setOpen}/>
                                     {/* <Button variant='contained' className={classes.button} fullWidth={true}>Find my size</Button> */}
                                 </Grid>
                             </Grid>
