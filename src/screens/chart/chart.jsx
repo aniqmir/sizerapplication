@@ -9,6 +9,10 @@ import FindSize from './findsize/findsize.jsx';
 
 const genders = [
     {
+        value:'',
+        label:''
+    },
+    {
       value: 'female',
       label: 'Female',
     },
@@ -20,6 +24,10 @@ const genders = [
 
   const brands = [
     {
+        value:'',
+        label:''
+    },
+    {
       value: 'Marching Show Concepts',
       label: 'Marching Show Concepts',
     },
@@ -30,6 +38,10 @@ const genders = [
   ];
   
   const sizeStyle = [
+    {
+        value:'',
+        label:''
+    },
       {
           value:'2XS',
           label:'2XS'
@@ -73,6 +85,10 @@ const genders = [
   ]
  
   const sizeMarch = [
+      {
+          value:'',
+          label:''
+      },
       {
           value:'XSMALL',
           label:'Xsmall'
@@ -146,8 +162,8 @@ function Chart(){
         hip: '',
         inseam:'',
         overarm:'',
-        bestfit:'Marching Show Concepts',
-        size:'SMALL'
+        bestfit:'',
+        size:''
       });
 
 
@@ -185,8 +201,8 @@ function Chart(){
             hip: '',
             inseam:'',
             overarm:'',
-            bestfit:'Marching Show Concepts',
-            size:'SMALL'
+            bestfit:'',
+            size:''
           })
           setradioValue('in')
       }
